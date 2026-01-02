@@ -39,7 +39,7 @@ const QuizPage = () => {
             return;
         }
         timerRef.current = setTimeout(() => {
-            setTimeLeft(timeleft - 1);
+            setTimeLeft(prev => prev - 1); // Safer way to update timer
         }, 1000);
         return () => clearTimeout(timerRef.current);
     }, [timeleft, score]);
@@ -157,32 +157,33 @@ const QuizPage = () => {
                                 </div>
                             )}
 
-                            {/* --- REVIEW SECTION (FIXED) --- */}
+                            {/* --- REVIEW SECTION --- */}
                             {showReview && (
                                 <div className="text-start mt-4">
                                     <h4 className="text-center mb-3">📝 Answer Key</h4>
                                     {quiz.questions.map((q, index) => {
                                         const userAnswer = answers[index];
                                         
-                                        // --- THE FIX IS HERE ---
-                                        // We check BOTH names so it works regardless of backend naming
-                                        const actualAnswer = q.correctAnswer || q.correctMatch; 
+                                        // VITAL: Check exactly what your backend returns. 
+                                        // Added check for correctAnswer, correctMatch, or correct
+                                        const actualAnswer = q.correctAnswer || q.correctMatch || q.correct; 
 
                                         const isCorrect = userAnswer === actualAnswer;
                                         const isSkipped = !userAnswer;
 
                                         return (
-                                            <div key={q.id} className={`card mb-3 p-3 border-2 ${isCorrect ? 'border-success' : 'border-danger'}`} style={{ backgroundColor: isCorrect ? '#f0fff4' : '#fff5f5' }}>
+                                            <div key={q.id || index} className={`card mb-3 p-3 border-2 ${isCorrect ? 'border-success' : 'border-danger'}`} style={{ backgroundColor: isCorrect ? '#f0fff4' : '#fff5f5' }}>
                                                 <p className="fw-bold mb-2">Q{index + 1}: {q.questionText}</p>
                                                 <div className="d-flex flex-column flex-md-row justify-content-between gap-3">
                                                     <div className="p-2 rounded w-100" style={{border: '1px solid #ccc', background: 'white'}}>
                                                         <small className="text-muted d-block mb-1">Your Answer:</small>
                                                         {isSkipped ? <span className="badge bg-secondary">⛔ Skipped</span> : <strong className={isCorrect ? 'text-success' : 'text-danger'}>{userAnswer} {isCorrect ? '✅' : '❌'}</strong>}
                                                     </div>
+
                                                     {(!isCorrect || isSkipped) && (
                                                         <div className="p-2 rounded w-100" style={{border: '1px solid #198754', background: '#e8f5e9'}}>
                                                             <small className="text-muted d-block mb-1">Correct Answer:</small>
-                                                            <strong className="text-success">{actualAnswer} ✅</strong>
+                                                            <strong className="text-success">{actualAnswer || "Data Missing"} ✅</strong>
                                                         </div>
                                                     )}
                                                 </div>
@@ -204,7 +205,7 @@ const QuizPage = () => {
                         </div>
                     </div>
                     {quiz.questions.map((q, index) => (
-                        <div key={q.id} className="question-card">
+                        <div key={q.id || index} className="question-card">
                             <p className="question-text">{index + 1}. {q.questionText}</p>
                             <div className="options-grid">
                                 {q.options.map((option, optIndex) => {

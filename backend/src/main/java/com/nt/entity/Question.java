@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty; // Added this
 import java.util.List;
 
 @Entity
@@ -16,19 +17,19 @@ public class Question {
 
     private String questionText;
 
-    // FIX 1: Add FetchType.EAGER to stop the 500 Error
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "question_options", joinColumns = @JoinColumn(name = "question_id"))
-    @Column(name = "option_value") // Giving the column a specific name helps
+    @Column(name = "option_value") 
     private List<String> options; 
 
-    // FIX 2: Rename this to match React's "correctAnswer"
+    // This ensures the Backend, DTO, and Frontend all speak the same language
+    @JsonProperty("correctMatch") 
     @Column(name="correct_match")
     private String correctAnswer; 
 
     @ManyToOne
     @JoinColumn(name = "quiz_id")
-    @JsonIgnore        // <--- Prevents Infinite Loop
-    @ToString.Exclude  // <--- Prevents Console Crash
+    @JsonIgnore        
+    @ToString.Exclude  
     private Quiz quiz;
 }
