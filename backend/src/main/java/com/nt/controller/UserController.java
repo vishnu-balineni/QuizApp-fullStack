@@ -15,7 +15,7 @@ import com.nt.service.UserService;
 
 @RestController
 @RequestMapping("/api/quiz/auth")
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin("/**")
 public class UserController {
 	@Autowired
 	private UserService UserService;

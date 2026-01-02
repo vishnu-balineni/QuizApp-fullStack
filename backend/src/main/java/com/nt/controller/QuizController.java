@@ -13,7 +13,7 @@ import com.nt.service.QuizService;
 
 @RestController
 @RequestMapping("/api/quiz")
-@CrossOrigin("http://localhost:5173")// <--- FIX 3: Enable CORS for React
+@CrossOrigin("/**")// <--- FIX 3: Enable CORS for React
 public class QuizController {
 
     @Autowired
