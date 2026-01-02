@@ -18,6 +18,8 @@ public class Question {
 
     // FIX 1: Add FetchType.EAGER to stop the 500 Error
     @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "question_options", joinColumns = @JoinColumn(name = "question_id"))
+    @Column(name = "option_value")
     private List<String> options; 
 
     // FIX 2: Rename this to match React's "correctAnswer"
