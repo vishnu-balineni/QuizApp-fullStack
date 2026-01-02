@@ -1,0 +1,90 @@
+/* src/pages/Home.css */
+
+/* 1. The Background: Deep Animated Gradient */
+.home-container {
+    /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
+    background-color:rgba(235, 8, 8, 0.705);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite; /* Moving background */
+    min-height: 100vh;
+    padding: 3rem 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Keyframes for the moving background animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 2. The Title */
+.page-title {
+    color: white;
+    font-weight: 800;
+    font-size: 3rem;
+    text-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+}
+
+/* 3. The Card: Glassy & Modern */
+.quiz-card {
+    background: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    border: none;
+    border-radius: 20px; /* Super rounded */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Soft deep shadow */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy animation */
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+/* 4. Hover Effect: Pop up and Glow */
+.quiz-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    z-index: 2;
+}
+
+/* 5. Card Content */
+.card-title {
+    color: #2d3436;
+    font-weight: 800;
+}
+
+.category-badge {
+    background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+/* 6. The Button: Gradient & Glowing */
+.btn-start {
+    background-image: linear-gradient(to right, #FF512F 0%, #DD2476 51%, #FF512F 100%);
+    margin: 10px;
+    padding: 12px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 50px; /* Pill shape */
+    border: none;
+    font-weight: 700;
+    width: 100%;
+    display: block;
+}
+
+.btn-start:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+    transform: scale(1.05);
+}

@@ -1,0 +1,62 @@
+/* src/pages/QuizPage.css */
+
+.quiz-container {
+    border:2px solid #131212;
+    background: rgba(124, 118, 175, 0.568);
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.question-card {
+    border-bottom: 3px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+}
+
+.question-text {
+    font-weight: 700;
+    color: #2c3e50;
+    font-size: 1.2rem;
+}
+
+/* Custom Radio Button Styling */
+.option-label {
+    display: block;
+    padding: 10px 15px;
+    margin: 5px 0;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: #f8f9fa;
+    border-color: #838485;
+}
+
+.option-label:hover {
+    background-color: #7fcff59d;
+    border-color: #0662f5;
+}   
+
+/* When an option is selected */
+.option-input:checked + .option-label {
+    background-color: #8bf193;
+    border-color: #2cf02c;
+    color: #0a06ff;
+    font-weight: 600;
+}
+
+/* Hide the ugly default radio circle if you want, 
+   but keeping it is better for accessibility. 
+   We will keep it simple for now. */
+
+.score-section {
+    text-align: center;
+    padding: 40px;
+    background: #d4edda;
+    border-radius: 15px;
+    color: #155724;
+}

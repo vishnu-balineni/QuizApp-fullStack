@@ -1,0 +1,16 @@
+# Ignore Backend Junk
+backend/target/
+backend/.mvn/
+backend/*.class
+backend/.settings/
+backend/.classpath
+backend/.project
+
+# Ignore Frontend Junk
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env
+
+# System Junk
+.DS_Store
