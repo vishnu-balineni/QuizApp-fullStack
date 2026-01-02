@@ -15,7 +15,7 @@ import com.nt.service.UserService;
 
 @RestController
 @RequestMapping("/api/quiz/auth")
-
+@CrossOrigin("https://quiz-app-full-stack-mu.vercel.app")
 public class UserController {
 	@Autowired
 	private UserService UserService;

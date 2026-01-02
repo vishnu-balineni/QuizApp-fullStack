@@ -13,7 +13,7 @@ import com.nt.service.QuizService;
 
 @RestController
 @RequestMapping("/api/quiz")
-
+@CrossOrigin("https://quiz-app-full-stack-mu.vercel.app")// <--- FIX 3: Enable CORS for React
 public class QuizController {
 
     @Autowired

@@ -17,7 +17,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await api.post('/api/quiz/auth/register', formData);
+            await api.post('/auth/register', formData);
             // alert("Registration Successful! Please Login.");
             navigate('/login');
         } catch (error) {

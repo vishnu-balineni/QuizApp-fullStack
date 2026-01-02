@@ -16,27 +16,28 @@ const Login=()=>{
         setFormData({...formData,[e.target.name]:e.target.value});
 
     };
-    const handleSubmit = async (e)=>{
-        e.preventDefault();
-        try{
-            const response = await api.post('/api/quiz/auth/login', formData);
-            const user = response.data;
-            
-            // 1. Save User info to storage
-            localStorage.setItem("user", JSON.stringify(user));
-            // alert(`Welcome back, ${user.username}!`);
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        // Updated path to match @RequestMapping("/api/quiz/auth")
+        const response = await api.post('/auth/login', formData);
+        const user = response.data;
+        
+        localStorage.setItem("user", JSON.stringify(user));
 
-            // 2. Redirect based on Role (Matches your Java Enum: Teacher/Student)
-            if (user.role === 'Teacher') {
-                navigate('/admin'); // Teacher goes to Create Quiz
-            } else {
-                navigate('/');      // Student goes to Home
-            }
+        // Use toUpperCase() to match Java Enums (TEACHER/STUDENT)
+        const role = user.role.toUpperCase();
 
-        }catch(error){
-            console.error("Login failed:",error);
+        if (role === 'TEACHER') {
+            navigate('/admin');
+        } else {
+            navigate('/');
         }
+    } catch (error) {
+        console.error("Login failed:", error);
+        alert("Invalid Username or Password");
     }
+};
     return (
         <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
             <div className="card p-5 shadow-lg" style={{ width: '400px', borderRadius: '15px' }}>
