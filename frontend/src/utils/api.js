@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: "https://quizapp-fullstack-n5ct.onrender.com/api/quiz",
+    // Root URL only
+    baseURL: "https://quizapp-fullstack-n5ct.onrender.com", 
 });
 
 export default api;

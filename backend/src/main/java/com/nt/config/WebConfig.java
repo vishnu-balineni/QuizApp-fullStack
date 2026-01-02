@@ -1,17 +1,11 @@
-package com.nt.config;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**") // Apply to ALL endpoints
-                .allowedOrigins("http://localhost:5173") // Allow React URL
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allow these actions
+        registry.addMapping("/**")
+                .allowedOriginPatterns("*") // Allows any origin including Vercel
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }

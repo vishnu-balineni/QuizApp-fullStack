@@ -19,7 +19,7 @@ const Login=()=>{
     const handleSubmit = async (e)=>{
         e.preventDefault();
         try{
-            const response = await api.post('/auth/login', formData);
+            const response = await api.post('/api/quiz/auth/login', formData);
             const user = response.data;
             
             // 1. Save User info to storage
